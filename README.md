@@ -1,6 +1,7 @@
 # feelings-atrium
 
-Things I want in one place to look at quickly to avoid the arduous task of googling any of it again.
+> "You start a question, and it's like starting a stone. You sit quietly on top of a hill; and away the stone goes, starting others."
+> - Richard Enfield, Dr. Jekyll and Mr. Hyde
 
 ## Table of Contents
 
