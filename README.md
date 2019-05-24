@@ -9,6 +9,7 @@
 
 - [Pandas](#pandas)
     - [Read CSV Excel and databases](#readfiles)
+    - [Read SQL as a dataframe](#sql)
     - [Handle strings](#handlestrings)
     - [Convert datatypes](#convertdatatypes)
     - [Summarise one or more columns](#summarisesinglecolumns)
@@ -811,6 +812,37 @@ Run both Python2 and Python3:
     * source activate py27
     * source deactivate
 
+
+# SQL 
+### Read from SQLite
+In order to work with a SQLite database in Python, we first have to connect to it. We can do that using the connect function, which returns a connection object.Once we have a connection object, we can then create a cursor object. Cursors allow us to exectue sql queries against a database.
+
+
+```
+#accessing the SQL data with sqlite3 package
+import sqlite3
+conn = sqlite3.connect('filename.sqlite')
+cursor = conn.cursor()
+print("Opened database successfully")
+```
+Once we have a cursor object, we can use it to execute a query against the databse with the execute method.
+```
+#Getting a list of all the tables saved into the database
+for row in cursor.execute("SELECT name FROM sqlite_master WHERE type='table';"):
+    print(row)
+```
+
+We can use pandas read_sql_query function to read the results of a sql query directly into a pandas dataframe. The below code with execute the query and return a dataframe. This means we do not need to create a cursor object, can automatically read in the header and creates a pandas dataframe for manipulation and analysis.
+
+```
+# read the issues and messages tables pandas 
+issues = pd.read_sql_query("SELECT * FROM issue ", conn)
+messages = pd.read_sql_query("SELECT * FROM messages ", conn)
+
+issues.head()
+messages.head()
+```
+We now have two dataframes, issues and messages
 
 # Common APIs
 
